@@ -78,12 +78,15 @@ public class AnimationPanel extends JPanel {
 
     g.setColor(newColor);
 
-    if (shape instanceof Rectangle) {
+    /*
+    //if (shape instanceof Rectangle) {
       g.fillRect(newX, newY, newWidth, newHeight);
     }
-    if (shape instanceof Ellipse) {
+    // (shape instanceof Ellipse) {
       g.fillOval(newX, newY, newWidth, newHeight);
     }
+    */
+
   }
 
   public void acceptTransformations(List<Transformation> transformations) {
