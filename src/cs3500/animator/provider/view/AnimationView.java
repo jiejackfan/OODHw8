@@ -1,6 +1,6 @@
-package cs3500.animator.view;
-import cs3500.animator.model.Shape;
-import cs3500.animator.model.Transformation;
+package cs3500.animator.provider.view;
+import cs3500.animator.provider.model.Shape;
+import cs3500.animator.provider.model.Transformation;
 import java.util.List;
 import java.util.Map;
 

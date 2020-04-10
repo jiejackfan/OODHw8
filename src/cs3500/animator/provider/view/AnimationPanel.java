@@ -1,10 +1,10 @@
-package cs3500.animator.view;
+package cs3500.animator.provider.view;
 
 import cs3500.animator.model.Ellipse;
-import cs3500.animator.model.Posn2D;
+import cs3500.animator.provider.model.Posn2D;
 import cs3500.animator.model.Rectangle;
-import cs3500.animator.model.Shape;
-import cs3500.animator.model.Transformation;
+import cs3500.animator.provider.model.Shape;
+import cs3500.animator.provider.model.Transformation;
 
 import java.awt.Color;
 import java.awt.Dimension;

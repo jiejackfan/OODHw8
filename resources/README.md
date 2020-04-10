@@ -21,7 +21,7 @@ Classes implementing this interface are suppose to represent the overall data mo
 
 Interface #2:
 
-cs3500.animator.model.Shape
+Shape
 
 This interface represents a 2D shape that can be animated via Transformations that are applied to it. We currently support animation for 2 types of shapes, Ellipses and Rectangles.
 
@@ -34,7 +34,7 @@ Classes implementing this interface should be able to:
 
 Interface #3:
 
-cs3500.animator.model.Transformation
+Transformation
 
 This interface represents the possible animation "steps" that can be applied to a shape. We currently support 3 types of transformations: Recoloring, cs3500.animator.model.Scaling, and cs3500.animator.model.Motion. 
 
@@ -43,7 +43,7 @@ A transformation always has to have a shape that is to be applied to.
 A large majority of the invariants we thought of are related to the creation of shapes and transformations:
 
 INVARIANTS:
-1.No position can be negative (this is enforced in the concrete cs3500.animator.model.Shape and cs3500.animator.model.Transformation classes)
+1.No position can be negative (this is enforced in the concrete Shape and Transformation classes)
 2.Dimensions of a shape cannot be negative
 3.Times cannot be negative, endTime has to be greater than startTime (can't go back in time)
 4.Dimensions of a shape cannot be zero

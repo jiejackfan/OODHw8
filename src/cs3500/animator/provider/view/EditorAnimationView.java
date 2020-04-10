@@ -1,5 +1,5 @@
 
-package cs3500.animator.view;
+package cs3500.animator.provider.view;
 
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
