@@ -37,9 +37,7 @@ public class AnimationController implements IController, ActionListener {
   protected Timer timer;
   protected int currentTick = 0;
 
-
   public static int DELAY;
-
   private String testStr;
   /**
    * This action listener will be used by the timer initialized in playAnimation(). The
