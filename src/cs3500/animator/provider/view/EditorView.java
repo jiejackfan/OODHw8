@@ -1,5 +1,6 @@
 package cs3500.animator.provider.view;
 
+import cs3500.animator.provider.model.PShape;
 import cs3500.animator.provider.model.Posn2D;
 import cs3500.animator.provider.model.Shape;
 import cs3500.animator.provider.model.Transformation;
@@ -418,7 +419,7 @@ public class EditorView extends JFrame implements EditorAnimationView {
    * @param shapes shapes that are to be drawn
    */
   @Override
-  public void getShapes(Map<String, Shape> shapes) {
+  public void getShapes(Map<String, PShape> shapes) {
     this.picturePanel.acceptShapes(shapes);
   }
 
