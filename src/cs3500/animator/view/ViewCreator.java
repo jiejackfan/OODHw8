@@ -1,6 +1,11 @@
 package cs3500.animator.view;
 
+import cs3500.animator.model.IModel;
 import cs3500.animator.model.ReadOnlyModel;
+import cs3500.animator.provider.view.EditViewAdapter;
+import cs3500.animator.provider.model.Posn2D;
+import cs3500.animator.provider.view.EditorAnimationView;
+import cs3500.animator.provider.view.EditorView;
 
 /**
  * Factory class to create a view based on input arguments from cs3500.animator.Excellence1. This
@@ -12,7 +17,7 @@ public class ViewCreator {
    * Enum to represent the 3 different types of views a user can create.
    */
   public enum viewType {
-    text, svg, visual, edit
+    text, svg, visual, edit, provider
   }
 
   /**
@@ -65,4 +70,14 @@ public class ViewCreator {
     throw new IllegalStateException("Can't create the type of view class "
         + "specified in the input argument.");
   }
+
+  public IEditView createEditViewAdapter(String type, IModel m, int width, int height, Posn2D posn2D, double tickPerSecond) {
+    if (viewType.provider == viewType.valueOf(type.toLowerCase())) {
+      EditorAnimationView providerView = new EditorView(width, height, posn2D, (int)tickPerSecond);
+      return new EditViewAdapter(providerView);
+    }
+    throw new IllegalStateException("Can't create the type of view class "
+            + "specified in the input argument.");
+  }
+
 }

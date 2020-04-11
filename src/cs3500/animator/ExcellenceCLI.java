@@ -5,6 +5,8 @@ import cs3500.animator.controller.PAnimationController;
 import cs3500.animator.controller.IController;
 import cs3500.animator.model.AnimationModel;
 import cs3500.animator.model.IModel;
+import cs3500.animator.provider.model.Posn2D;
+import cs3500.animator.provider.view.EditorAnimationView;
 import cs3500.animator.util.AnimationBuilder;
 import cs3500.animator.util.AnimationReader;
 import cs3500.animator.view.IEditView;
@@ -87,6 +89,11 @@ public class ExcellenceCLI {
           m.getCanvasHeight(), m.getCanvasX(), m.getCanvasY());
       v.setOutputFileName(outputFileName);
       c = new AnimationController(v, m);
+    } else if (viewType.equalsIgnoreCase("provider")) {
+      IEditView v = new ViewCreator().createEditViewAdapter(viewType,m,m.getCanvasWidth(),
+              m.getCanvasHeight(), new Posn2D(m.getCanvasX(), m.getCanvasY()), tickPerSecond);
+      // No need to specify the title of the window
+      c = new AnimationController(v,m);
     }
     else {
       IView v = new ViewCreator().createViewBasedOnType(viewType, m, m.getCanvasWidth(),

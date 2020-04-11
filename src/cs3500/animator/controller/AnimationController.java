@@ -2,6 +2,7 @@ package cs3500.animator.controller;
 
 import cs3500.animator.model.AnimationModel;
 import cs3500.animator.model.IModel;
+import cs3500.animator.provider.view.EditViewAdapter;
 import cs3500.animator.util.AnimationReader;
 import cs3500.animator.view.EditView;
 import cs3500.animator.view.IEditView;
@@ -75,6 +76,8 @@ public class AnimationController implements IController, ActionListener {
     this.m = m;
     if (v instanceof EditView) {
       ((EditView) v).addActionListener(this);
+    } else if (v instanceof EditViewAdapter) {
+      ((EditViewAdapter) v).addActionListener(this);
     }
   }
 
@@ -88,6 +91,8 @@ public class AnimationController implements IController, ActionListener {
     } else if (v instanceof TextView || v instanceof SVGView) {
       v.setDelay(DELAY);
       v.render();
+    } else if (v instanceof EditViewAdapter) {
+
     }
   }
 
@@ -95,7 +100,6 @@ public class AnimationController implements IController, ActionListener {
   public void setDelay(double tickPerSecond) {
     DELAY = (int) (1000 / tickPerSecond); // convert to ms per tick
   }
-
 
   @Override
   public void actionPerformed(ActionEvent e) {
