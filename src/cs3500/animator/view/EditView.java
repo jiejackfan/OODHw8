@@ -272,11 +272,6 @@ public class EditView extends JFrame implements IEditView {
   }
 
   @Override
-  public JButton getPlayButton() {
-    return playButton;
-  }
-
-  @Override
   public void changeResumeButtonColor(Color color) {
     resumeButton.setBackground(color);
   }

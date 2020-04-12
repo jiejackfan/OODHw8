@@ -18,7 +18,7 @@ public interface PAnimationModel {
    * @param shape The {@code cs3500.animator.model.Shape} that is to be added
    * @throws IllegalArgumentException if the given ID already exists in the animation
    */
-  void addShape(String id, Shape shape) throws IllegalArgumentException;
+  void addShape(String id, PShape shape) throws IllegalArgumentException;
 
   /**
    * Removes the shape with the given ID from the animation.
@@ -59,7 +59,7 @@ public interface PAnimationModel {
    *
    * @return
    */
-  Map<String, Shape> getShapeList();
+  Map<String, PShape> getShapeList();
 
   /**
    * Produces a list of the transformations that are applied to each shape in this animation model.

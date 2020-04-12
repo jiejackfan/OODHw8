@@ -1,9 +1,9 @@
 package cs3500.animator.provider.view;
 
-import cs3500.animator.model.Ellipse;
+//import cs3500.animator.model.Ellipse;
+import cs3500.animator.provider.model.PShape;
 import cs3500.animator.provider.model.Posn2D;
-import cs3500.animator.model.Rectangle;
-import cs3500.animator.provider.model.Shape;
+//import cs3500.animator.model.Rectangle;
 import cs3500.animator.provider.model.Transformation;
 
 import java.awt.Color;
@@ -22,7 +22,7 @@ import javax.swing.JPanel;
 public class AnimationPanel extends JPanel {
 
   private List<Transformation> transformations;
-  private Map<String, Shape> shapes;
+  private Map<String, PShape> shapes;
   private int currentTick;
 
   /**
@@ -30,7 +30,7 @@ public class AnimationPanel extends JPanel {
    */
   public AnimationPanel() {
     this.transformations = new ArrayList<Transformation>();
-    this.shapes = new HashMap<String, Shape>();
+    this.shapes = new HashMap<String, PShape>();
     setPreferredSize(new Dimension(500, 500));
   }
 
@@ -39,7 +39,7 @@ public class AnimationPanel extends JPanel {
     super.paintComponent(g);
     Graphics2D g2d = (Graphics2D) g;
 
-    for (Shape s : this.shapes.values()) {
+    for (PShape s : this.shapes.values()) {
       for (Transformation t : s.getTransformations()) {
         tweenShape(g2d, t);
         break;
@@ -64,7 +64,7 @@ public class AnimationPanel extends JPanel {
     int startWidth = t.getStartWidth();
     int endWidth = t.getEndWidth();
     int dTime = this.currentTick - startTime; // t - ta
-    Shape shape = t.getShape();
+    PShape shape = t.getShape();
 
     Color newColor = new Color(
         dTime * (endColor.getRed() - startColor.getRed()) / length + startColor.getRed(),
@@ -79,13 +79,17 @@ public class AnimationPanel extends JPanel {
     g.setColor(newColor);
 
     /*
-    //if (shape instanceof Rectangle) {
+    if (shape instanceof Rectangle) {
       g.fillRect(newX, newY, newWidth, newHeight);
     }
-    // (shape instanceof Ellipse) {
+    else (shape instanceof Ellipse) {
       g.fillOval(newX, newY, newWidth, newHeight);
     }
-    */
+
+     */
+
+    g.fillRect(newX, newY, newWidth, newHeight);
+
 
   }
 
@@ -93,7 +97,7 @@ public class AnimationPanel extends JPanel {
     this.transformations = transformations;
   }
 
-  public void acceptShapes(Map<String, Shape> shapes) {
+  public void acceptShapes(Map<String, PShape> shapes) {
     this.shapes = shapes;
   }
 

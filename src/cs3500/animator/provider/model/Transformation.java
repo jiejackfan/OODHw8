@@ -28,14 +28,13 @@ public interface Transformation {
 
   Color getEndColor();
 
-  Shape getShape();
+  PShape getShape();
 
 
   /**
    * This method will return information about the transformation on a single line in this format. #
-   *                  start                           end #        --------------------------
-   * ---------------------------- #        t  x   y   w  h   r   g  b    t   x   y   w  h   r   g
-   * b
+   *                  start                           end #
+   *     t  x   y   w  h   r   g  b    t   x   y   w  h   r   g    b
    *
    * @return string representation of the transformation
    */

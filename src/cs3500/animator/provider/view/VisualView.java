@@ -1,8 +1,8 @@
 package cs3500.animator.provider.view;
 
 
+import cs3500.animator.provider.model.PShape;
 import cs3500.animator.provider.model.Posn2D;
-import cs3500.animator.provider.model.Shape;
 import cs3500.animator.provider.model.Transformation;
 import java.awt.BorderLayout;
 import java.util.List;
@@ -70,7 +70,7 @@ public class VisualView extends JFrame implements AnimationView {
   }
 
   @Override
-  public void getShapes(Map<String, Shape> shapes) {
+  public void getShapes(Map<String, PShape> shapes) {
     this.panel.acceptShapes(shapes);
   }
 

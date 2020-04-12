@@ -1,6 +1,6 @@
 package cs3500.animator.provider.view;
 
-import cs3500.animator.provider.model.Shape;
+import cs3500.animator.provider.model.PShape;
 import cs3500.animator.provider.model.Transformation;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +26,7 @@ public interface AnimationView {
    * Receives the shapes contained within the model for use in the draw() method.
    * @param shapes shapes that are to be drawn
    */
-  void getShapes(Map<String, Shape> shapes);
+  void getShapes(Map<String, PShape> shapes);
 
   /**
    * Retrieve the final tick of the final transformation from the model in order to know when this
