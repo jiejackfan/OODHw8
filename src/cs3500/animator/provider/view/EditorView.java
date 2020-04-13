@@ -1,5 +1,6 @@
 package cs3500.animator.provider.view;
 
+import cs3500.animator.model.ReadOnlyModel;
 import cs3500.animator.provider.model.PShape;
 import cs3500.animator.provider.model.Posn2D;
 import cs3500.animator.provider.model.Transformation;
@@ -30,7 +31,7 @@ import javax.swing.border.LineBorder;
  * a user.
  */
 public class EditorView extends JFrame implements EditorAnimationView {
-  private static int FRAMES_PER_SECOND = 60;
+  private static int FRAMES_PER_SECOND = 1;
   private double currTick;
   private int endTick;
   private int speed; // ticks per second
@@ -65,6 +66,8 @@ public class EditorView extends JFrame implements EditorAnimationView {
   private JRadioButton rectangleRB;
   private JRadioButton ellipseRB;
 
+  private ReadOnlyModel m;
+
   /**
    * Constructs an EditorView.
    *
@@ -72,8 +75,10 @@ public class EditorView extends JFrame implements EditorAnimationView {
    * @param height The height of the window.
    * @param speed  The speed of the animation.
    */
-  public EditorView(int width, int height, Posn2D windowLocation, int speed) {
+  public EditorView(ReadOnlyModel m, int width, int height, Posn2D windowLocation, int speed) {
     super();
+
+    this.m = m;
 
     if (width < 0) {
       throw new IllegalArgumentException("width is negative.");
@@ -89,7 +94,7 @@ public class EditorView extends JFrame implements EditorAnimationView {
     this.endTick = 0;
     this.currTick = 0.0;
     this.isLooping = false;
-    this.isPlaying = false;
+    this.isPlaying = true;
 
     this.initGui(width, height);
     this.initTimer();
@@ -114,7 +119,7 @@ public class EditorView extends JFrame implements EditorAnimationView {
     this.add(userControlPanel);
 
     // the panel containing the animation, framed by a grey border
-    this.picturePanel = new AnimationPanel();
+    this.picturePanel = new AnimationPanel(m);
     this.picturePanel.setPreferredSize(new Dimension(width, height));
     this.picturePanel.setMaximumSize(new Dimension(width, height));
     this.picturePanel.setBorder(new LineBorder(Color.GRAY));
@@ -375,11 +380,12 @@ public class EditorView extends JFrame implements EditorAnimationView {
    * Initializes the timer controlling the animation.
    */
   private void initTimer() {
-    this.timer = new Timer(1000 / FRAMES_PER_SECOND, e -> {
+    this.timer = new Timer(1000 / speed, e -> {
       if (currTick < endTick) {
         if (isPlaying) {
           picturePanel.getCurrentTick((int) Math.round(currTick));
-          currTick = Math.min(currTick + 1.0 * this.speed / FRAMES_PER_SECOND, this.endTick);
+          //currTick = Math.min(currTick + 1.0 * this.speed / FRAMES_PER_SECOND, this.endTick);
+          currTick = Math.min(currTick + 1, this.endTick);
           this.repaint();
         }
       } else {
@@ -450,16 +456,13 @@ public class EditorView extends JFrame implements EditorAnimationView {
    */
   @Override
   public void addActionListener(ActionListener listener) {
+    System.out.println("added listener");
     this.playBtn.addActionListener(listener);
     this.pauseBtn.addActionListener(listener);
     this.restartBtn.addActionListener(listener);
     this.doEditBtn.addActionListener(listener);
   }
 
-  @Override
-  public void addKeyListener(KeyListener kl) {
-    //no buttons to add listeners to
-  }
 
   /**
    * Plays the animation.
@@ -503,6 +506,7 @@ public class EditorView extends JFrame implements EditorAnimationView {
   public void increaseSpeed() {
     this.speed += 10;
     this.updateSpeedLabel();
+    timer.setDelay(1000 / speed);
   }
 
   /**
@@ -516,6 +520,7 @@ public class EditorView extends JFrame implements EditorAnimationView {
     } else {
       this.speed = 1;
     }
+    timer.setDelay(1000 / speed);
 
     this.updateSpeedLabel();
   }

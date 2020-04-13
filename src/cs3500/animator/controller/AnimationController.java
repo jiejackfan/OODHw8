@@ -2,6 +2,7 @@ package cs3500.animator.controller;
 
 import cs3500.animator.model.AnimationModel;
 import cs3500.animator.model.IModel;
+import cs3500.animator.provider.IEditViewAdapter;
 import cs3500.animator.util.AnimationReader;
 import cs3500.animator.view.EditView;
 import cs3500.animator.view.IEditView;
@@ -76,6 +77,9 @@ public class AnimationController implements IController, ActionListener {
     if (v instanceof EditView) {
       ((EditView) v).addActionListener(this);
     }
+    else if (v instanceof IEditViewAdapter) {
+      ((IEditViewAdapter)v).addActionListener(this);
+    }
   }
 
   @Override
@@ -85,7 +89,11 @@ public class AnimationController implements IController, ActionListener {
       v.render();
       timer = new Timer(DELAY, taskPerformer);
       timer.start();
-    } else if (v instanceof TextView || v instanceof SVGView) {
+    }
+    else if (v instanceof IEditViewAdapter) {
+      v.render();
+    }
+    else if (v instanceof TextView || v instanceof SVGView) {
       v.setDelay(DELAY);
       v.render();
     }

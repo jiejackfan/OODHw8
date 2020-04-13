@@ -1,6 +1,11 @@
 package cs3500.animator.provider.view;
 
 //import cs3500.animator.model.Ellipse;
+import cs3500.animator.model.DifferentShapes;
+import cs3500.animator.model.IShape;
+import cs3500.animator.model.ReadOnlyModel;
+import cs3500.animator.provider.model.Rectangle;
+import cs3500.animator.provider.model.Ellipse;
 import cs3500.animator.provider.model.PShape;
 import cs3500.animator.provider.model.Posn2D;
 //import cs3500.animator.model.Rectangle;
@@ -24,16 +29,45 @@ public class AnimationPanel extends JPanel {
   private List<Transformation> transformations;
   private Map<String, PShape> shapes;
   private int currentTick;
+  private ReadOnlyModel m;
 
   /**
    * Default constructor for a panel.
    */
-  public AnimationPanel() {
+  public AnimationPanel(ReadOnlyModel m) {
     this.transformations = new ArrayList<Transformation>();
     this.shapes = new HashMap<String, PShape>();
     setPreferredSize(new Dimension(500, 500));
+    this.m = m;
   }
 
+
+  @Override
+  public void paintComponent(Graphics g) {
+    super.paintComponent(g);
+    Graphics2D g2 = (Graphics2D) g;
+
+    //List<IShape> listOfShape = m.getAnimation(m.getCurrentTick());
+    List<IShape> listOfShape = m.getFrame(currentTick);
+
+    //Go through each shape in the List of shape and draw the corresponding shape.
+    //Draws the shapes in order from first to last so the last object will be on top.
+    for (IShape shape : listOfShape) {
+      if (shape.getShape() == DifferentShapes.rectangle) {
+        g2.setColor(shape.getColor());
+        g2.fillRect((int) shape.getPosition().getX(), (int) shape.getPosition().getY(),
+            (int) shape.getWidth(), (int) shape.getHeight());
+      }
+      else if (shape.getShape() == DifferentShapes.oval
+          || shape.getShape() == DifferentShapes.ellipse) {
+        g2.setColor(shape.getColor());
+        g2.fillOval((int) shape.getPosition().getX(), (int) shape.getPosition().getY(),
+            (int) shape.getWidth(), (int) shape.getHeight());
+      }
+    }
+  }
+
+  /*
   @Override
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
@@ -46,6 +80,10 @@ public class AnimationPanel extends JPanel {
       }
     }
   }
+
+   */
+
+
 
   /**
    * Private helper function to calculate the intermediate values of a shape's properties.
@@ -78,17 +116,14 @@ public class AnimationPanel extends JPanel {
 
     g.setColor(newColor);
 
-    /*
     if (shape instanceof Rectangle) {
       g.fillRect(newX, newY, newWidth, newHeight);
     }
-    else (shape instanceof Ellipse) {
+
+    else if (shape instanceof Ellipse) {
       g.fillOval(newX, newY, newWidth, newHeight);
     }
 
-     */
-
-    g.fillRect(newX, newY, newWidth, newHeight);
 
 
   }

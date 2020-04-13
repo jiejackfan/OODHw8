@@ -1,6 +1,7 @@
 package cs3500.animator.provider.view;
 
 
+import cs3500.animator.model.ReadOnlyModel;
 import cs3500.animator.provider.model.PShape;
 import cs3500.animator.provider.model.Posn2D;
 import cs3500.animator.provider.model.Transformation;
@@ -19,6 +20,7 @@ public class VisualView extends JFrame implements AnimationView {
   private int tickRate;
   private int endTick;
   private int currentTick;
+  private ReadOnlyModel m;
 
   /**
    * Default constructor for a VisualView.
@@ -27,7 +29,7 @@ public class VisualView extends JFrame implements AnimationView {
    * @param windowLocation location of the top-left corner of the animation window
    * @param tickRate speed at which the animation will be played
    */
-  public VisualView(int width, int height, Posn2D windowLocation, int tickRate) {
+  public VisualView(ReadOnlyModel m, int width, int height, Posn2D windowLocation, int tickRate) {
     super();
 
     this.tickRate = tickRate;
@@ -39,7 +41,7 @@ public class VisualView extends JFrame implements AnimationView {
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     this.setLayout(new BorderLayout());
-    this.panel = new AnimationPanel();
+    this.panel = new AnimationPanel(m);
     this.panel.setSize(width, height);
     this.add(this.panel, BorderLayout.CENTER);
 
