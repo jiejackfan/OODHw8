@@ -3,6 +3,10 @@ package cs3500.animator.provider.model;
 import cs3500.animator.provider.model.AbstractShape;
 import java.awt.Color;
 
+import cs3500.animator.provider.model.AbstractShape;
+import cs3500.animator.provider.model.Posn2D;
+import cs3500.animator.provider.model.Transformation;
+
 /**
  * Represents a cs3500.animator.model.Rectangle.
  */
@@ -20,7 +24,7 @@ public class Rectangle extends AbstractShape {
    * @param shapeId   Unique name for the shape, used to identify the shape in the animation
    */
   public Rectangle(int startTime, int endTime, Color color,
-      Posn2D startPos, double width, double height, String shapeId) {
+                   Posn2D startPos, double width, double height, String shapeId) {
 
     super(startTime, endTime, color, startPos, width, height, shapeId);
 
