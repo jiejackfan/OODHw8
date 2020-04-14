@@ -1,6 +1,5 @@
 package cs3500.animator.provider.view;
 
-//import cs3500.animator.model.Ellipse;
 import cs3500.animator.model.DifferentShapes;
 import cs3500.animator.model.IShape;
 import cs3500.animator.model.ReadOnlyModel;
@@ -8,7 +7,6 @@ import cs3500.animator.provider.model.Rectangle;
 import cs3500.animator.provider.model.Ellipse;
 import cs3500.animator.provider.model.PShape;
 import cs3500.animator.provider.model.Posn2D;
-//import cs3500.animator.model.Rectangle;
 import cs3500.animator.provider.model.Transformation;
 
 import java.awt.Color;
@@ -47,7 +45,6 @@ public class AnimationPanel extends JPanel {
     super.paintComponent(g);
     Graphics2D g2 = (Graphics2D) g;
 
-    //List<IShape> listOfShape = m.getAnimation(m.getCurrentTick());
     List<IShape> listOfShape = m.getFrame(currentTick);
 
     //Go through each shape in the List of shape and draw the corresponding shape.

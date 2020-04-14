@@ -9,32 +9,56 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import cs3500.animator.provider.model.Transformation;
 import cs3500.animator.provider.view.EditorAnimationView;
-import cs3500.animator.view.EditView;
 import cs3500.animator.view.IEditView;
 import java.util.Objects;
-import javax.swing.JButton;
 
 /**
- *
+ * The view adpater to adapt the Provider EditorView to our View. This adapter needs to understand
+ *  our view, therefore it implements IEditView. This adpater also needs to take care of button and
+ *  key listening specific to the Provider EditView. In order to control the EditorView, there will
+ *  be a delegate object of the EditorView. This adapter handles initialization of provider's
+ *  EditorView, handles key & button events, help render the panel.
  */
 public class IEditViewAdapter implements IEditView, ActionListener {
 
   EditorAnimationView providerEdit;
   IModel m;
 
+  /**
+   * Constructor function being called in main function ExcellenceCLI to initialize the adapter and
+   *  also initialize the delegate Provider EditorView.
+   * @param m a model so EditorView and Panel can get access to our model.
+   * @param width of the animation panel as an integer.
+   * @param height of the animation panel as an integer.
+   * @param x value of the window location.
+   * @param y value of the window location.
+   * @param speed that the animation will intialize with.
+   */
   public IEditViewAdapter(IModel m, int width, int height, int x, int y, int speed) {
     providerEdit = new EditorView(m, width, height, new Posn2D(x, y), speed);
     this.m = m;
   }
 
+  @Override
+  public void addActionListener(ActionListener listener) {
+    //tell the EditorView that the adapter is button press's listener.
+    providerEdit.addActionListener(this);
+
+    //sets up key listener.
+    this.setKeyListeners();
+  }
+
+  /**
+   * Sets up the keyListener class and set the EditView as the keyListener. Assign up key press to
+   *  run increaseSpeed() in EditorView. Assign down key press to run decreaseSpeed() in EditorView.
+   *  Assign "l" key to enable or disable looping.
+   */
   private void setKeyListeners() {
     Map<Character, Runnable> keyboardCharToAction = new HashMap<>();
     Map<Integer, Runnable> keyPressToAction = new HashMap<>();
@@ -56,83 +80,16 @@ public class IEditViewAdapter implements IEditView, ActionListener {
   }
 
   @Override
-  public void addActionListener(ActionListener listener) {
-    providerEdit.addActionListener(this);
-    this.setKeyListeners();
-  }
-
-  @Override
-  public boolean getCheckState() {
-    return false;
-  }
-
-  @Override
-  public void changeResumeButtonColor(Color color) {
-
-  }
-
-  @Override
-  public List<String> getShapePanelInput() {
-    return null;
-  }
-
-  @Override
-  public List<String> getInsertPanelInput() {
-    return null;
-  }
-
-  @Override
-  public List<String> getEditPanelInput() {
-    return null;
-  }
-
-  @Override
-  public void showErrorMsg(String string) {
-
-  }
-
-  @Override
-  public File getLoadLocation() {
-    return null;
-  }
-
-  @Override
-  public File getSaveLocation() {
-    return null;
-  }
-
-  @Override
-  public void clearAnimatorPanel() {
-
-  }
-
-  @Override
-  public void loadNewAnimatorPanel(ReadOnlyModel m, int width, int height) {
-
-  }
-
-  @Override
-  public void refresh() {
-
-  }
-
-  @Override
   public void render() {
     providerEdit.getEndTick(m.getMaxTick());
     providerEdit.start();
     providerEdit.draw();
   }
 
-  @Override
-  public void setOutputFileName(String outputFileName) {
-
-  }
-
-  @Override
-  public void setDelay(int delay) {
-
-  }
-
+  /**
+   * Handles the button events.
+   * @param e a button event.
+   */
   @Override
   public void actionPerformed(ActionEvent e) {
     switch (Objects.requireNonNull(e.getActionCommand())) {
@@ -200,30 +157,71 @@ public class IEditViewAdapter implements IEditView, ActionListener {
         break;
     }
   }
-  /*
+
   @Override
-  public void keyTyped(KeyEvent e) {
-    switch (e.getKeyCode()) {
-      case KeyEvent.VK_UP: //toggle color
-        providerEdit.increaseSpeed();
-        break;
-      case KeyEvent.VK_DOWN:
-        providerEdit.decreaseSpeed();
-        break;
-      case KeyEvent.VK_L:
-        providerEdit.toggleLooping();
-        break;
-      default:
-        break;
-    }
+  public boolean getCheckState() {
+    throw new UnsupportedOperationException("Provider view adapter doesn't need this method");
   }
 
   @Override
-  public void keyPressed(KeyEvent e) {
+  public void changeResumeButtonColor(Color color) {
+    throw new UnsupportedOperationException("Provider view adapter doesn't need this method");
   }
 
   @Override
-  public void keyReleased(KeyEvent e) {
+  public List<String> getShapePanelInput() {
+    throw new UnsupportedOperationException("Provider view adapter doesn't need this method");
   }
-  */
+
+  @Override
+  public List<String> getInsertPanelInput() {
+    throw new UnsupportedOperationException("Provider view adapter doesn't need this method");
+  }
+
+  @Override
+  public List<String> getEditPanelInput() {
+    throw new UnsupportedOperationException("Provider view adapter doesn't need this method");
+  }
+
+  @Override
+  public void showErrorMsg(String string) {
+    throw new UnsupportedOperationException("Provider view adapter doesn't need this method");
+  }
+
+  @Override
+  public File getLoadLocation() {
+    throw new UnsupportedOperationException("Provider view adapter doesn't need this method");
+  }
+
+  @Override
+  public File getSaveLocation() {
+    throw new UnsupportedOperationException("Provider view adapter doesn't need this method");
+  }
+
+  @Override
+  public void clearAnimatorPanel() {
+    throw new UnsupportedOperationException("Provider view adapter doesn't need this method");
+  }
+
+  @Override
+  public void loadNewAnimatorPanel(ReadOnlyModel m, int width, int height) {
+    throw new UnsupportedOperationException("Provider view adapter doesn't need this method");
+  }
+
+  @Override
+  public void refresh() {
+    throw new UnsupportedOperationException("Provider view adapter doesn't need this method");
+  }
+
+  @Override
+  public void setOutputFileName(String outputFileName) {
+    throw new UnsupportedOperationException("Provider view adapter doesn't need this method");
+  }
+
+  @Override
+  public void setDelay(int delay) {
+    throw new UnsupportedOperationException("Provider view adapter doesn't need this method");
+  }
+
+
 }
