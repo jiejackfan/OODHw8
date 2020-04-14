@@ -19,6 +19,14 @@ import java.util.List;
 import java.util.Map;
 import javax.swing.JPanel;
 
+
+ // IMPORTANT: some changes were made ot this file by us the customer, please refer to
+ // ExperienceAsCustomer.txt for detailed changes.
+
+
+
+
+
 /**
  * Drawing panel for the visual view.
  */

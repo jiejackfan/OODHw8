@@ -8,7 +8,7 @@ All features are working in our submission, including:
         
         - Click "**Play**" button again to resume the animation
         
-        - Click "**Replay**" button to restart the animation from the beginning at any time
+        - Click "**Restart**" button to restart the animation from the beginning at any time
     Keys:
         - Press key "**l**" (lowercase) to disable or enable looping
         

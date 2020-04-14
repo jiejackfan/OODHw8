@@ -25,6 +25,14 @@ import javax.swing.JTextField;
 import javax.swing.Timer;
 import javax.swing.border.LineBorder;
 
+
+ //IMPORTANT: some changes were made to this file by the customer, please refer to
+ //ExperienceAsCustomer.txt for detailed changes.
+
+
+
+
+
 /**
  * Represents a frame-by-frame animation view where the animation can be controlled and modified by
  * a user.
