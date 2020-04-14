@@ -20,8 +20,8 @@ import java.util.Map;
 import javax.swing.JPanel;
 
 
- // IMPORTANT: some changes were made ot this file by us the customer, please refer to
- // ExperienceAsCustomer.txt for detailed changes.
+// IMPORTANT: some changes were made ot this file by us the customer, please refer to
+// ExperienceAsCustomer.txt for detailed changes.
 
 
 

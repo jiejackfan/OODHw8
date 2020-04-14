@@ -26,8 +26,8 @@ import javax.swing.Timer;
 import javax.swing.border.LineBorder;
 
 
- //IMPORTANT: some changes were made to this file by the customer, please refer to
- //ExperienceAsCustomer.txt for detailed changes.
+//IMPORTANT: some changes were made to this file by the customer, please refer to
+//ExperienceAsCustomer.txt for detailed changes.
 
 
 
