@@ -33,6 +33,8 @@ public interface IEditView extends IView {
    */
   boolean getCheckState();
 
+  JButton getPlayButton();
+
   /**
    * Helper to change the resume/pause button's color based on controller's command.
    *

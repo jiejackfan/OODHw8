@@ -17,6 +17,7 @@ import java.util.Map;
 import cs3500.animator.provider.view.EditorAnimationView;
 import cs3500.animator.view.IEditView;
 import java.util.Objects;
+import javax.swing.JButton;
 
 /**
  * The view adpater to adapt the Provider EditorView to our View. This adapter needs to understand
@@ -160,6 +161,11 @@ public class IEditViewAdapter implements IEditView, ActionListener {
 
   @Override
   public boolean getCheckState() {
+    throw new UnsupportedOperationException("Provider view adapter doesn't need this method");
+  }
+
+  @Override
+  public JButton getPlayButton() {
     throw new UnsupportedOperationException("Provider view adapter doesn't need this method");
   }
 
