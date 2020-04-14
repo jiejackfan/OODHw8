@@ -2,8 +2,6 @@ package cs3500.animator.provider.model;
 
 import cs3500.animator.provider.model.AbstractShape;
 import java.awt.Color;
-
-import cs3500.animator.provider.model.AbstractShape;
 import cs3500.animator.provider.model.Posn2D;
 import cs3500.animator.provider.model.Transformation;
 

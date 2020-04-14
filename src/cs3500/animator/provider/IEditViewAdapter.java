@@ -154,8 +154,10 @@ public class IEditViewAdapter implements IEditView, ActionListener {
         } catch (IllegalArgumentException iae) {
           providerEdit.displayErrorMessage(iae.getMessage());
         }
-      default:
         break;
+
+      default:
+        throw new IllegalArgumentException("No button should bring to default case");
     }
   }
 
