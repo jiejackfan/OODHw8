@@ -77,10 +77,7 @@ public class AnimationPanel extends JPanel {
       }
     }
   }
-
    */
-
-
 
   /**
    * Private helper function to calculate the intermediate values of a shape's properties.
@@ -120,9 +117,6 @@ public class AnimationPanel extends JPanel {
     else if (shape instanceof Ellipse) {
       g.fillOval(newX, newY, newWidth, newHeight);
     }
-
-
-
   }
 
   public void acceptTransformations(List<Transformation> transformations) {
